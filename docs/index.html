@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>ansiplay.js</title>
     <script type="module">
-        import * as ansiplay from "../ansiplay.js";
+        import * as ansiplay from "./ansiplay.js";
         const music_list = document.getElementById("music");
         music_list.addEventListener("change", async (event) => {
             if (ansiplay.is_playing()) await ansiplay.stop()
