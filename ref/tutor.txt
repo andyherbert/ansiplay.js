@@ -1,0 +1,127 @@
+
+ANSI PLAY is a very powerful utility which allows you to put music
+and sounds into your ANSI files.  Before continuing, you should first
+read the manual (ANSIPLAY.DOC) to become familiar with music strings,
+music codes, and sound codes.
+
+At any time you may press [ESC] to exit, or [ENTER] to continue...F ;;;900000♫
+
+Here are a few demonstrations:
+By using the music codes, you can play a music string as long as
+you want.  Carraige returns are ignored.  Here are the music strings
+used with the file SEA.ANS.  We'll go into more detail shortly...F ;;;900000♫
+
+ESC[MF T200 L8 O4 C < B > C F4 C < G#4 A > C 4 < F MS GGG MN G4 A# ♫
+ESC[MF 892.32;1;8;;-19.04♫  ESC[MF O3 L2 F P2♫F T200 L8 O4 C < B > C F4 C < G#4
+A > C 4 < F MS GGG MN G4 A#  ♫F 892.32;1;8;;-19.04 ♫  F O3 L2 F
+There are actually 3 music strings here.  The first and third strings
+are music codes; the middle string consists of sound codes.  Each
+string is preceded with the ESCape CHARACTER followed by [MF or [MB,
+and suffixed with the MUSIC NOTE CHARACTER CHR$(14).F ;;;900000♫
+
+The first string contains the majority of the song.  At the end of the song,
+the musical scale is decreased gradually from A# to F of the next lowest
+octave.  To do this, we could spend lots of time figuring out which notes,
+duration and octaves to use, OR... we could use one simple SOUND CODE:F ;;;90000
+0♫
+
+ESC[MF   Play sound codes in Music Foreground.                            prefix
+892.32   Begin with the frequency which is equivalent to the note A#.       FREQ
+;1       Play frequency for a duration of 1 clock tick.                     DURA
+;8       Repeat playing the frequency 8 times (8 cycles).                 CYCLES
+;        No delay between cycles.                                          DELAY
+;-19.04  Each time the frequency is cycled, subtract 19.04 from it's value. VARY
+♫        End of music string.                                             suffix
+
+F ;;;900000♫If we could visually see the changes takingight look like this:
+
+            Cycle      Frequency      Duration    Delay
+              0          892.32          1          0    A# equivalent
+              1          873.28          1          0
+              2          854.24          1          0
+              3          835.20          1          0
+              4          816.16          1          0
+              5          797.12          1          0
+              6          778.08          1          0
+              7          759.04          1          0
+              8          740.00          1          0
+
+F ;;;900000♫Variation factor of -19.04 is calculated by:
+          Beginning Frequency:  892.32   (A# equivalent)
+     Desired ending FREQUENCY:  739.98 - (F# equivalent - next lower octave)
+                                ------
+                   Difference:  152.34
+          Divided by 8 CYCLES:    8.00 ÷
+                                ------
+             VARIATION factor:   19.04 subtotal ...then give it a negative
+value so the frequency will decrease (instead of increase)...  =  -19.04
+
+Now lets take another look at the music strings:
+
+F ;;;900000♫ESC[MF T200 > C F4 C < G#4 A > C4 < F MS GGG MN G4 A# ♫
+ESC[MF 892.32;1;8;;-19.04♫   ESC[MF O3 L2 F P2 ♫F T200 L8 O4 C < B > C F4 C < G#
+4
+A > C 4 < F MS GGG MN G4 A#  ♫F 892.32;1;8;;-19.04 ♫  F O3 L2 F
+ P2♫F ;;;900000♫
+
+To decrease at a slower pace, you could increase the number of CYCLES, and
+adjust the VARIATION rate accordingly.
+
+To decrease at at faster pace, you could decrease the number of CYCLES, and
+adjust the VARIATION rate accordingly.
+
+F ;;;900000♫Now that we've looked at how SOUND CODES can  music, let's look
+at some other ways they can be used...
+
+F ;;;900000♫In your ANSI file, it is possible to put a "pr files by adding
+MANY MANY Escape sequences of ESC[sESC[sESC[sESC[sESC[s...etc...
+This can make the size of your ANSI file very L-A-R-G-E.  But with
+ANSI PLAY, it's simple!  Just insert a SOUND CODE something like...
+ESC[MF ;;;25000♫.   This sets the DELAY for a count of 25,000 (or
+whatever other value you want).
+
+     F ;;;900000♫Note that the ;;; (semicoill used.  This is
+     to separate the parameters.  Parameters FREQUENCY (1);
+     DURATION (2); and CYCLES (3) are left empty.  Parameter
+     DELAY (3) is set to a value of 25,000.  F ;;;900000♫The last parameter,
+     VARIATION (5) is also empty, but no semicolons are needed since
+     it comes AFTER the last parameter which has value -- kind
+     of like leaving off the 00000's in a number 29.973100000
+F ;;;900000♫
+If you want a pause which requires keyboard input, you can set the
+value for DELAY extremely high.  Regardless of the value used, if
+[ENTER] is hit, the pause will be released.
+
+F ;;;900000♫Another way that SOUND CODES can be used is bo or more tw
+SOUND CODES together, for example...
+
+     Here's a bird call using 2 music strings together:
+          ESC[MF 1397;4;2;250♫ ESC[MF 2600; 1.2;4;;150♫F 1397;4;2;250♫ F 2600;1.
+2;4;;150♫F ;;;900000♫
+
+     Here's the sound of a steam ship:
+          ESC[MF 57;15♫  ESC[MF 37;25♫
+F 57;15♫F 37;25♫F ;;;900000♫
+     Getting zapped by martians:
+          ESC[MF 7000;.12;200;25;-100♫F
+7000;.12;200;25;-100♫F ;;;900000♫
+
+One more sound effect to mention...
+In place of the VARIATION variable, you can use a " *  (star) " character.
+This will vari the frequency at random...For example:F ;;;900000♫
+
+ESC[MF 100;2;10;5;*♫F 100;2;10;5;*♫F ;;;900000♫
+
+The easiest way to work with your music string to get it JUST right
+is to use the PLAY.EXE program with the /E (editor) option.  The user's
+manual (ANSIPLAY.DOC) gives more details on how to work the editor,
+then save your music string to file.F ;;;900000♫
+
+Once your ANSI files are created, you can turn them into a slide show
+with the ANSIAUTO.EXE program.  Since the manual also covers details
+on ANSIAUTO, rather than explaining it, we'll finish the tutorial
+by running ANSIAUTO.
+
+Here are a few demo programs.  You can exit ANSIAUTO by hitting
+the [ESC] key.  ANSIAUTO will exit after the current display
+is completed.  Strike any key when you're ready...F ;;;900000♫

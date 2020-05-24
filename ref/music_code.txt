@@ -1,0 +1,272 @@
+                    MUSIC CODES and SOUND CODES REFERENCE
+
+      Below is a reference listing of MUSIC CODES and SOUND CODES
+      available.  For information on how to use the "Music String
+      Syntax", consult the user's manual (file: ANSIPLAY.DOC).
+
+      MUSIC CODE SYNTAX:  ESC[MF <music codes or sound codes)> (music note)
+                       or ESC[MB <music codes or sound codes)> (music note)
+
+                                OCTAVES AND TONES
+
+      A-G  Plays A, B, ..., G in current octave
+           # or +  After the note specifies sharp
+                -  After the note specifies flat
+        >  Increases octave by 1. Octave cannot go beyond 6.
+           >> Increases by 2 octaves, etc.
+
+        <  Decreases octave by 1. Octave cannot drop below 0.
+           << Decreases by 2 octaves, etc.
+
+       OCTAVE:
+       On  Sets current octave (0-6)
+           Sets the current octave. There are seven octaves,
+           numbered 0-6.
+
+       NOTE:
+       Nn  Plays note n (0-84)
+           The range for n is 0-84.  In the seven possible
+           octaves, there are 84 notes.  When n = 0, this means a rest.
+
+          *(Below is a listing of notes, both by MUSIC CODES and
+            by SOUND CODES)
+
+
+                            TONE DURATION AND TEMPO
+
+      LENGTH:
+      Ln  Sets length of a note. (1-64)
+          The range for n is 1-64.  L 4 is a quarter note,  L 1 is a
+          whole note, etc.
+
+          The length may also follow the note when a change of
+          length only is desired for a particular note. For
+          example,
+                   A 16 can be equivalent to L 16 A
+
+      TEMPO:
+      Tn  Sets number of quarter notes per minute (32-255)
+          The range for n is 32-255. The default for n is 120.
+
+          Note: Because of the slow clock-interrupt rate, some notes
+                will not play at higher tempos (L 64 at T 255, for
+                example).
+
+      MUSIC STACCATO:
+      MS  Sets "music staccato" so that each note will play 3/4 of
+          the time determined by the length (L).
+
+      MUSIC NORMAL:
+      MN  Sets "music normal" so that each note will play 7/8 of
+          the time determined by the length (L).
+
+      MUSIC LEGATO:
+      ML  Sets "music legato" so that each note will play the full
+          period set by length (L).
+
+      PAUSE:
+      Pn  Pause for the duration of n quarternotes (1-64)
+          Specifies a pause, ranging from 1-64. This option
+          corresponds to the length of each note, set with Ln.
+
+      DOT:
+      .   A period after a note causes the note to play 3/2 times
+          the length determined by L (length) times T (tempo). The
+          period has the same meaning as in a musical score.
+
+          Multiple periods can appear after a note. Each period
+          adds a length equal to one half the length of the previous
+          period. For example,
+               "A."   plays 1 + 1/2 or 3/2 times the length
+               "A.."  plays 1 + 1/2 + 1/4 or 7/4 times the length.
+
+          Periods can appear after a pause (P). In this case, the
+          pause length is scaled in the same way notes are scaled.
+
+                                   OPERATION
+
+      MUSIC FOREGROUND:
+      MF  Sets music/sound to run in foreground
+
+      MUSIC BACKGROUND:
+      MB  Sets music/sound to run in background
+
+      See the manual (ANSIPLAY.DOC) for more details on MF and MB.
+
+          ========================================================
+          LISTING OF TONES, both by MUSIC CODES and by SOUND CODES
+          --------------------------------------------------------
+
+      Example: The following codes will all yield the same tone...
+
+                     MUSIC CODE    ESC[O0 C (music note)
+                     MUSIC CODE    ESC[N1 (music note)
+                     SOUND CODE    ESC[65.406;8 (music note)
+
+
+       IBM              HELMHOLTZ      MUSIC               SOUND
+      OCTAVE   NOTE     NOTATION    CODE (NOTE)   =   CODE (FREQUENCY)
+      ------ ---------- ---------   -------------     ----------------
+               D#,E-                                       38.890
+               E                                           41.204
+               F                                           43.654
+               F#,G-                                       46.250
+               G                                           49.000
+               G#,A-                                       51.914
+               A                                           55.000
+               A#,B-                                       58.270
+               B                                           61.736
+      -------------------------------------------------------------
+      00       C         CC           N1                   65.406
+               C#,D-                  N2                   69.296
+               D                      N3                   73.416
+               D#,E-                  N4                   77.782
+               E                      N5                   82.406
+               F                      N6                   87.308
+               F#,G-                  N7                   92.498
+               G                      N8                   97.998
+               G#,A-                  N9                  103.826
+               A                      N10                 110.000
+               A#,B-                  N11                 116.540
+               B                      N12                 123.470
+      -------------------------------------------------------------
+      01       C         C            N13                 130.812
+               C#,D-                  N14                 138.592
+               D                      N15                 146.832
+               D#,E-                  N16                 155.564
+               E                      N17                 164.821
+               F                      N18                 174.614
+               F#,G-                  N19                 185.000
+               G                      N20                 195.998
+               G#,A-                  N21                 207.660
+               A                      N22                 220.000
+               A#,B-                  N23                 233.080
+               B                      N24                 246.940
+      -------------------------------------------------------------
+      02       C         c            N25                 261.620
+               C#,D-                  N26                 277.180
+               D                      N27                 296.660
+               D#,E-                  N28                 311.120
+               E                      N29                 329.620
+               F                      N30                 349.220
+               F#,G-                  N31                 370.000
+               G                      N32                 392.000
+               G#,A-                  N33                 415.300
+               A                      N34                 440.000
+               A#,B-                  N35                 466.160
+               B                      N36                 493.880
+      -------------------------------------------------------------
+      03       C         c' (middle)  N37                 523.260
+               C#,D-                  N38                 554.360
+               D                      N39                 587.320
+               D#,E-                  N40                 622.260
+               E                      N41                 659.260
+               F                      N42                 698.460
+               F#,G-                  N43                 739.980
+               G                      N44                 784.000
+               G#,A-                  N45                 830.600
+               A                      N46                 880.000
+               A#,B-                  N47                 892.320
+               B                      N48                 987.760
+      -------------------------------------------------------------
+      04       C         c''          N49                1046.500
+      default  C#,D-                  N50                1108.740
+      octave   D                      N51                1174.660
+               D#,E-                  N52                1244.500
+               E                      N53                1318.520
+               F                      N54                1396.920
+               F#,G-                  N55                1479.980
+               G                      N56                1567.980
+               G#,A-                  N57                1661.220
+               A                      N58                1760.000
+               A#,B-                  N59                1864.660
+               B                      N60                1975.540
+      -------------------------------------------------------------
+      05       C         c'''         N61                2093.000
+               C#,D-                  N62                2217.400
+               D                      N63                2349.400
+               D#,E-                  N64                2489.000
+               E                      N65                2637.000
+               F                      N66                2793.800
+               F#,G-                  N67                2960.000
+               G                      N68                3136.000
+               G#,A-                  N69                3322.400
+               A                      N70                3520.000
+               A#,B-                  N71                3729.400
+               B                      N72                3951.000
+      -------------------------------------------------------------
+      06       C         c''''        N73                4186.000
+               C#,D-                  N74                4435.000
+               D                      N75                4698.600
+               D#,E-                  N76                4978.000
+               E                      N77                5274.000
+               F                      N78                5587.600
+               F#,G-                  N79                5920.000
+               G                      N80                6272.000
+               G#,A-                  N81                6644.800
+               A                      N82                7040.000
+               A#,B-                  N83                7458.600
+               B                      N84                7902.200
+      -------------------------------------------------------------
+               C         cv           -                  8372.000
+               C#,D-                  -                  8869.800
+               D                      -                  9397.200
+               D#,E-                  -                  9956.000
+               E                      -                 10548.000
+               F                      -                 11175.400
+               F#,G-                  -                 11839.800
+               G                      -                 12543.800
+               G#,A-                  -                 13289.800
+               A                      -                 14080.000
+               A#,B-                  -                 14917.200
+               B                      -                 15804.200
+      -------------------------------------------------------------
+               C                      -                 16744.000
+               C#,D-                  -                 17739.600
+               D                      -                 18794.600
+               D#,E-                  -                 19912.200
+               E                      -                 21096.200
+               F                      -                 22350.600
+               F#,G-                  -                 23679.600
+               G                      -                 25083.800
+               G#,A-                  -                 26579.400
+               A                      -                 28160.000
+               A#,B-                  -                 29834.400
+               B                      -                 31608.600
+
+      =============================================================
+
+
+                        SOUND CODES REFERENCE
+
+
+      SOUND CODE SYNTAX:
+
+              ESC[MF <FREQ; DURA; CYCLES; DELAY; VARI> (music note)
+
+             FREQUENCY          :  a numeric value from 37 to 32,767
+                Frequency is the desired frequency in hertz.
+
+             DURATION           :  an numberic value from 0 to 65,535
+                Duration is how long the tone should play, measured
+                in clock ticks. There are 18.2 clock ticks per second
+                regardless of CPU speed.
+
+             CYCLES (optional)  :  an integer from 0 to 9,999
+                Cycles is the number of times to repeat the
+                frequency/duration.
+
+             DELAY  (optional)  :  an integer from 0 to 999,999,999
+                Delay is the length of pause between cycles.
+                ANSIPLAY will count from 0 to DELAY before proceeding.
+
+             VARIATION (optional):  an numeric value from -9,999 to 9,999
+                Variation will change the FREQUENCY each time the tone
+                is repeated using the CYCLES variable.  FREQUENCY will
+                use it's current value, add the VARIATION value to
+                itself (per cycle) to get a new FREQUENCY, then play
+                the new FREQUENCY.
+
+
+      * Note: also see the file ANSICODE.TXT for a listing of
+              ANSI escape control codes.

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ansiplay.js</title>
+    <script type="module">
+        import * as ansiplay from "../ansiplay.js";
+        const music_list = document.getElementById("music");
+        music_list.addEventListener("change", async (event) => {
+            if (ansiplay.is_playing()) await ansiplay.stop()
+            ansiplay.play(music_list.value);
+        });
+    </script>
+    <style>
+    </style>
+</head>
+<body>
+    <select id="music">
+        <option value="mus/2001.ams">2001.ams</option>
+        <option value="mus/5th-symp.ams">5th-symp.ams</option>
+        <option value="mus/aloha.ams">aloha.ams</option>
+        <option value="mus/bandplay.mus">bandplay.mus</option>
+        <option value="mus/barenec.mus">barenec.mus</option>
+        <option value="mus/beethovn.ams">beethovn.ams</option>
+        <option value="mus/bethlehm.mus">bethlehm.mus</option>
+        <option value="mus/bibltels.mus">bibltels.mus</option>
+        <option value="mus/bluetail.mus">bluetail.mus</option>
+        <option value="mus/boarhead.mus">boarhead.mus</option>
+        <option value="mus/bumblbee.mus">bumblbee.mus</option>
+        <option value="mus/caissons.mus">caissons.mus</option>
+        <option value="mus/callout.mus">callout.mus</option>
+        <option value="mus/can-can.ams">can-can.ams</option>
+        <option value="mus/canthelp.mus">canthelp.mus</option>
+        <option value="mus/carolina.ams">carolina.ams</option>
+        <option value="mus/carolswt.mus">carolswt.mus</option>
+        <option value="mus/castwind.mus">castwind.mus</option>
+        <option value="mus/charge.mus">charge.mus</option>
+        <option value="mus/cherry.mus">cherry.mus</option>
+        <option value="mus/chk2chk.mus">chk2chk.mus</option>
+        <option value="mus/cider.mus">cider.mus</option>
+        <option value="mus/cindy.mus">cindy.mus</option>
+        <option value="mus/ckls&msl.ams">ckls&msl.ams</option>
+        <option value="mus/colormy.mus">colormy.mus</option>
+        <option value="mus/comethou.mus">comethou.mus</option>
+        <option value="mus/countrds.mus">countrds.mus</option>
+        <option value="mus/coventry.mus">coventry.mus</option>
+        <option value="mus/crawdad.mus">crawdad.mus</option>
+        <option value="mus/cripcrk.mus">cripcrk.mus</option>
+        <option value="mus/cucarach.mus">cucarach.mus</option>
+        <option value="mus/daisy.mus">daisy.mus</option>
+        <option value="mus/decided.mus">decided.mus</option>
+        <option value="mus/deckhall.mus">deckhall.mus</option>
+        <option value="mus/dixie.ams">dixie.ams</option>
+        <option value="mus/dixie.mus">dixie.mus</option>
+        <option value="mus/doggy.mus">doggy.mus</option>
+        <option value="mus/douknow.mus">douknow.mus</option>
+        <option value="mus/doxology.mus">doxology.mus</option>
+        <option value="mus/drummer.mus">drummer.mus</option>
+        <option value="mus/dsailor.mus">dsailor.mus</option>
+        <option value="mus/favetune.ams">favetune.ams</option>
+        <option value="mus/fiddle.ams">fiddle.ams</option>
+        <option value="mus/ghostbst.ams">ghostbst.ams</option>
+        <option value="mus/greenslv.ams">greenslv.ams</option>
+        <option value="mus/if-rich.ams">if-rich.ams</option>
+        <option value="mus/jctsily.ams">jctsily.ams</option>
+        <option value="mus/larsjig.ams">larsjig.ams</option>
+        <option value="mus/lonerngr.ams">lonerngr.ams</option>
+        <option value="mus/manger1.mus">manger1.mus</option>
+        <option value="mus/manger2.mus">manger2.mus</option>
+        <option value="mus/margarta.mus">margarta.mus</option>
+        <option value="mus/mash.mus">mash.mus</option>
+        <option value="mus/minstboy.mus">minstboy.mus</option>
+        <option value="mus/moonrivr.mus">moonrivr.mus</option>
+        <option value="mus/morning.mus">morning.mus</option>
+        <option value="mus/mostwond.mus">mostwond.mus</option>
+        <option value="mus/movin.mus">movin.mus</option>
+        <option value="mus/mtchmakr.mus">mtchmakr.mus</option>
+        <option value="mus/muppets.mus">muppets.mus</option>
+        <option value="mus/musicbox.mus">musicbox.mus</option>
+        <option value="mus/mybonnie.mus">mybonnie.mus</option>
+        <option value="mus/myway.mus">myway.mus</option>
+        <option value="mus/nbdyknws.mus">nbdyknws.mus</option>
+        <option value="mus/nonight.mus">nonight.mus</option>
+        <option value="mus/noplhome.mus">noplhome.mus</option>
+        <option value="mus/nuttin.mus">nuttin.mus</option>
+        <option value="mus/ode2joy.ams">ode2joy.ams</option>
+        <option value="mus/ofolkhom.ams">ofolkhom.ams</option>
+        <option value="mus/osusana.ams">osusana.ams</option>
+        <option value="mus/prealudm.ams">prealudm.ams</option>
+        <option value="mus/rhstcwby.ams">rhstcwby.ams</option>
+        <option value="mus/RICKR2.ANS">RICKR2.ANS</option>
+        <option value="mus/rorysbak.ams">rorysbak.ams</option>
+        <option value="mus/s5-emaj1.ams">s5-emaj1.ams</option>
+        <option value="mus/starspgl.ams">starspgl.ams</option>
+        <option value="mus/strspsfv.ams">strspsfv.ams</option>
+        <option value="mus/w-matild.ams">w-matild.ams</option>
+        <option value="mus/willtell.ams">willtell.ams</option>
+        <option value="mus/wipeout1.ams">wipeout1.ams</option>
+        <option value="mus/wipeout2.ams">wipeout2.ams</option>
+    </select>
+    <p>
+        <a href="https://github.com/andyherbert/ansiplay.js">Source at GitHub</a>
+    </p>
+</body>
+</html>
