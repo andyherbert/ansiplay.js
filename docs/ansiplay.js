@@ -227,7 +227,7 @@ async function play_freq(oscillator_node, gain_node, music, tempo, freq, dots, l
         case "legato": break;
         default: note_length *= 7 / 8; break;
     }
-    oscillator_node.frequency.value = freq;
+    oscillator_node.frequency.setValueAtTime(freq, audio_context.currentTime);
     let extra = 0;
     while (dots) {
         if (extra == 0) {
@@ -237,9 +237,9 @@ async function play_freq(oscillator_node, gain_node, music, tempo, freq, dots, l
         }
         dots -= 1;
     }
-    gain_node.gain.value = 0.05;
+    gain_node.gain.setValueAtTime(0.05, audio_context.currentTime);;
     await pause(note_length + extra);
-    gain_node.gain.value = 0.00;
+    gain_node.gain.setValueAtTime(0.00, audio_context.currentTime);;
     const pause_length = full_note - note_length;
     if (pause_length) {
         await pause(pause_length);
@@ -266,7 +266,7 @@ export async function play(url) {
     oscillator_node.type = "square";
     gain_node.connect(audio_context.destination);
     oscillator_node.start();
-    gain_node.gain.value = 0.00;
+    gain_node.gain.setValueAtTime(0.00, audio_context.currentTime);;
     const resp = await fetch(url);
     const buffer = await resp.arrayBuffer();
     const bytes = new Uint8Array(buffer);
