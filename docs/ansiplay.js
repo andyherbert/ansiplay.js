@@ -1,3 +1,4 @@
+const audio_context = window.webkitAudioContext ? new webkitAudioContext() : new AudioContext();
 const notes = [
       65.406,   69.296,   73.416,   77.782,   82.406,   87.308,   92.498,   97.998,  103.826,  110.000,  116.540,  123.470,
      130.812,  138.592,  146.832,  155.564,  164.821,  174.614,  185.000,  195.998,  207.660,  220.000,  233.080,  246.940,
@@ -246,19 +247,19 @@ async function play_freq(oscillator_node, gain_node, music, tempo, freq, dots, l
 
 }
 
-async function resume_audio_context(audio_context) {
+async function resume_audio_context() {
     return new Promise(resolve => {
         audio_context.resume();
         audio_context.onstatechange = () => {
             if (audio_context.state == "running") {
                 resolve();
             }
+            audio_context.onstatechange = undefined;
         };
     });
 }
 
 export async function play(url) {
-    const audio_context = window.webkitAudioContext ? new webkitAudioContext() : new AudioContext();
     const oscillator_node = audio_context.createOscillator();
     const gain_node = audio_context.createGain();
     oscillator_node.connect(gain_node);
