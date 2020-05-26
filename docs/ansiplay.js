@@ -301,7 +301,9 @@ export async function play(url) {
             break;
         }
     }
+    gain_node.disconnect(audio_context.destination);
     oscillator_node.stop();
+    oscillator_node.disconnect(gain_node);
     playing = false;
 }
 
