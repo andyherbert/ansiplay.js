@@ -246,6 +246,17 @@ async function play_freq(oscillator_node, gain_node, music, tempo, freq, dots, l
 
 }
 
+async function resume_audio_context(audio_context) {
+    return new Promise(resolve => {
+        audio_context.resume();
+        audio_context.onstatechange = () => {
+            if (audio_context.state == "running") {
+                resolve();
+            }
+        };
+    });
+}
+
 export async function play(url) {
     const audio_context = window.webkitAudioContext ? new webkitAudioContext() : new AudioContext();
     const oscillator_node = audio_context.createOscillator();
@@ -263,6 +274,9 @@ export async function play(url) {
     let tempo = 120;
     let length = 1;
     let octave = 4;
+    if (audio_context.state == "suspended") {
+        await resume_audio_context();
+    }
     playing = true;
     for (let i = 0; i < seq.length; i++) {
         switch (seq[i].type) {
